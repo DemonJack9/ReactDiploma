@@ -4,6 +4,7 @@ import { observer } from "mobx-react";
 import UserStore from "./stores/UserStore";
 import LoginForm from "./LoginForm";
 import SubmitButton from "./SubmitButton";
+import DisplayTable from "./DisplayTable";
 
 class App extends React.Component {
   async componentDidMount() {
@@ -65,6 +66,7 @@ class App extends React.Component {
         return (
           <div className="app">
             <div className="container">
+              <DisplayTable />
               Welcome {UserStore.username}
               <SubmitButton
                 text={"Log out"}
