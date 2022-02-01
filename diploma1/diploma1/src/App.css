@@ -1,13 +1,16 @@
 body,
 html,
 #root,
-.app,
-.container {
+.dapp,
+.dcontainer {
   width: 100%;
   height: 100%;
+  color: #fff;
+  font-size: 28px;
+  background-color: #282c34;
 }
 
-.container {
+.dcontainer {
   font-size: 28px;
   color: #fff;
   display: flex;
@@ -17,7 +20,7 @@ html,
   background-color: #282c34;
 }
 
-.loginForm {
+.dloginForm {
   box-sizing: border-box;
   width: 100%;
   max-width: 400px;
@@ -25,11 +28,11 @@ html,
   padding-right: 20px;
 }
 
-.inputField {
+.dinputField {
   padding-top: 16px;
 }
 
-.input {
+.dinput {
   box-sizing: border-box;
   outline: none;
   border: solid 2px #1189de;
@@ -41,11 +44,11 @@ html,
   background: rgba(255, 255, 255, 1);
 }
 
-.submitButton {
+.dsubmitButton {
   padding-top: 16px;
 }
 
-.btn {
+.dbtn {
   width: 100%;
   min-width: 280px;
   color: #565656;

@@ -3,9 +3,9 @@ import React from "react";
 class SubmitButton extends React.Component {
   render() {
     return (
-      <div className="submitButton">
+      <div className="dsubmitButton">
         <button
-          className="btn"
+          className="dbtn"
           disabled={this.props.disabled}
           onClick={() => this.props.onClick()}
         >

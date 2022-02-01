@@ -72,7 +72,7 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div className="loginForm">
+      <div className="dloginForm">
         Log in
         <InputField
           type="text"

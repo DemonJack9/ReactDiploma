@@ -57,16 +57,16 @@ class App extends React.Component {
   render() {
     if (UserStore.loading) {
       return (
-        <div className="app">
-          <div className="container">Loading, please wait..</div>
+        <div className="dapp">
+          <div className="dcontainer">Loading, please wait..</div>
         </div>
       );
     } else {
       if (UserStore.isLoggedIn) {
         return (
-          <div className="app">
-            <div className="container">
-              <DisplayTable />
+          <div className="dapp">
+            <DisplayTable />
+            <div className="dcontainer">
               Welcome {UserStore.username}
               <SubmitButton
                 text={"Log out"}
@@ -79,8 +79,8 @@ class App extends React.Component {
       }
 
       return (
-        <div className="app">
-          <div className="container">
+        <div className="dapp">
+          <div className="dcontainer">
             <LoginForm />
           </div>
         </div>

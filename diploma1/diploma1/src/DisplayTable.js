@@ -13,15 +13,21 @@ class DisplayTable extends React.Component {
 
   callAPI() {
     //fetch data from API
-    fetch("http://dummy.restapiexample.com/api/v1/employees", {
-      method: "get",
-      headers: {
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "X-Requested-With",
-        "Content-Type": "application/json",
-      },
-    })
+    //TODO make this works
+    fetch(
+      "https://cors-anywhere.herokuapp.com/http://dummy.restapiexample.com/api/v1/employees",
+      {
+        method: "get",
+        headers: {
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers":
+            "Origin, X-Requested-With, Content-Type, Accept",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE",
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
