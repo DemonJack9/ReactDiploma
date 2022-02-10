@@ -3,15 +3,15 @@ import React from "react";
 const days = {
   "0": "Monday",
   "1": "Tuesday",
-  "2": "Wensday",
-  "3": "Thurstday",
+  "2": "Wednesday",
+  "3": "Thursday",
   "4": "Friday",
   "5": "Saturday",
 };
 
 const studentGroups = {
-  "0": "Masterat-1",
-  "1": "Masterat-2",
+  "0": "TAW-1",
+  "1": "TAW-2",
   "2": "TI-11",
   "3": "TI-21",
   "4": "TI-31",
@@ -34,14 +34,12 @@ class DisplayTable extends React.Component {
   handleChangeOnDay = (e) => {
     const dayId = e.target.value;
     const dayText = days[dayId];
-    console.log(dayText); // Do what you need to with the value here
     this.setState({ selectedDay: dayText });
   };
 
   handleChangeOnGroup = (e) => {
     const groupId = e.target.value;
     const groupText = studentGroups[groupId];
-    console.log(groupText); // Do what you need to with the value here
     this.setState({ selectedGroup: groupText });
   };
 
@@ -101,19 +99,19 @@ class DisplayTable extends React.Component {
         </table>
         <div className="outer">
           <select
-            value={this.state.selectedDay}
+            value={this.selectedDay}
             onChange={this.handleChangeOnDay}
             style={{ width: "25%" }}
           >
             <option value="0">Monday</option>
             <option value="1">Tuesday</option>
-            <option value="2">Wensday</option>
-            <option value="3">Thurstday</option>
+            <option value="2">Wednesday</option>
+            <option value="3">Thursday</option>
             <option value="4">Friday</option>
             <option value="5">Saturday</option>
           </select>
           <select
-            value={this.state.selectedGroup}
+            value={this.selectedGroup}
             onChange={this.handleChangeOnGroup}
             style={{ width: "25%" }}
           >
@@ -124,7 +122,11 @@ class DisplayTable extends React.Component {
             <option value="4">TI-31</option>
             <option value="5">TI-41</option>
           </select>
-          <button className="dbtn" onClick={() => this.writeRequest()}>
+          <button
+            style={{ width: "15%" }}
+            className="dbtn"
+            onClick={() => this.writeRequest()}
+          >
             SEND
           </button>
         </div>
