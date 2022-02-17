@@ -9,15 +9,6 @@ const days = {
   "5": "Saturday",
 };
 
-const studentGroups = {
-  "0": "TAW-1",
-  "1": "TAW-2",
-  "2": "TI-11",
-  "3": "TI-21",
-  "4": "TI-31",
-  "5": "TI-41",
-};
-
 class DisplayTable extends React.Component {
   constructor(props) {
     super(props);
@@ -26,13 +17,12 @@ class DisplayTable extends React.Component {
       faculties: [],
       groups: [],
       selectedDay: "Monday",
-      selectedGroup: "TAW-1",
       selectedFaculty: "Information Technology",
+      selectedGroup: "TAW-1",
     };
 
     this.callAPI = this.callAPI.bind(this);
     this.changeFaculty = this.changeFaculty.bind(this);
-    this.callAPI();
   }
 
   componentDidMount() {
@@ -82,35 +72,47 @@ class DisplayTable extends React.Component {
     this.setState({ selectedGroup: e.target.value });
   };
 
-  writeRequest() {
+  async writeRequest() {
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        day: this.state.selectedDay,
+        faculty: this.state.selectedFaculty,
+        group: this.state.selectedGroup,
+      }),
+    };
+    console.log(
+      JSON.stringify({
+        day: this.state.selectedDay,
+        faculty: this.state.selectedFaculty,
+        group: this.state.selectedGroup,
+      })
+    );
+
+    console.log(requestOptions);
+
+    try {
+      let res = await fetch(
+        "http://localhost:8090/studyDay/get",
+        requestOptions
+      );
+
+      let result = await res.json();
+      console.log(result);
+      this.setState({
+        list: result,
+      });
+    } catch (e) {
+      console.log("error appeared");
+    }
+
     console.log(this.state.selectedDay);
     console.log(this.state.selectedGroup);
     console.log(this.state.selectedFaculty);
-  }
-
-  callAPI() {
-    //fetch data from API
-    fetch(
-      "https://cors-anywhere.herokuapp.com/http://dummy.restapiexample.com/api/v1/employees",
-      {
-        method: "get",
-        headers: {
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers":
-            "Origin, X-Requested-With, Content-Type, Accept",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE",
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        this.setState({
-          list: data.data,
-        });
-      });
   }
 
   render() {
@@ -118,9 +120,9 @@ class DisplayTable extends React.Component {
       return (
         <tr key={item.id}>
           <td>{item.id}</td>
-          <td>{item.employee_name}</td>
-          <td>{item.emplotee_salary}</td>
-          <td>{item.employee_age}</td>
+          <td>{item.time}</td>
+          <td>{item.subject}</td>
+          <td>{item.professor}</td>
         </tr>
       );
     });
@@ -130,9 +132,9 @@ class DisplayTable extends React.Component {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Name</th>
-              <th>Salary</th>
-              <th>Age</th>
+              <th>Time</th>
+              <th>Subject</th>
+              <th>Professor</th>
             </tr>
           </thead>
           <tbody>{tb_data}</tbody>
